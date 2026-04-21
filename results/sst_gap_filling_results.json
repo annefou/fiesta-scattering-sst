@@ -1,0 +1,25 @@
+{
+  "method": "Cross Scattering Transform (FOSCAT)",
+  "original_paper": "Delouis et al. 2022, A&A 668, A122",
+  "original_paper_doi": "10.1051/0004-6361/202244566",
+  "eo_notebook_author": "Jean-Marc Delouis",
+  "eo_notebook_url": "https://pangeo-data.github.io/egi2024-demo/SST_AI.html",
+  "data": "Copernicus Marine SST L3S (IFREMER)",
+  "date": "2024-06-01",
+  "healpix_nside": 16,
+  "foscat_epochs": 20,
+  "elapsed_seconds": 3.370088815689087,
+  "device": "cpu",
+  "ocean_cells": 3048,
+  "observed_cells": 2583,
+  "cloudy_cells": 465,
+  "cloud_fraction_pct": 68.55885416666668,
+  "results": {
+    "observed_mean": 292.8837997903207,
+    "filled_mean": 290.8122024095425,
+    "observed_std": 9.35961829299961,
+    "filled_std": 14.213095818222332,
+    "mean_change_degC": 10.76874538241653,
+    "scattering_improvement_pct": -95.46638488769531
+  }
+}

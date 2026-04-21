@@ -1,0 +1,31 @@
+name: Run Experiment
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install foscat healpy xarray zarr s3fs pint-xarray cf-xarray cmcrameri
+          pip install jupytext matplotlib numpy scipy fsspec netcdf4
+
+      - name: Run notebook
+        env:
+          CI: "true"
+        run: |
+          jupytext --to notebook --execute 01_sst_gap_filling.py

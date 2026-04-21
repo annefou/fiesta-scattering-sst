@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling"
+message: "If you use this software, please cite it using the metadata from this file and the reference below."
+type: software
+authors:
+  - given-names: Anne
+    family-names: Fouilloux
+    orcid: "https://orcid.org/0000-0002-1784-2920"
+    affiliation: "LifeWatch ERIC"
+repository-code: "https://github.com/annefou/fiesta-scattering-sst"
+license: MIT
+references:
+  - type: article
+    title: "Cross-scattering transform on the sphere"
+    authors:
+      - given-names: Jean-Marc
+        family-names: Delouis
+      - given-names: Erwan
+        family-names: Allys
+      - given-names: Emmanuel
+        family-names: Gauvrit
+      - given-names: Fran\u00e7ois
+        family-names: Boulanger
+    journal: "Astronomy & Astrophysics"
+    volume: 668
+    pages: "A122"
+    year: 2022
+    doi: "10.1051/0004-6361/202244566"

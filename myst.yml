@@ -1,0 +1,6 @@
+version: 1
+project:
+  title: "Scattering Transform: SST Gap-Filling"
+  toc:
+    - file: index.md
+    - file: 01_sst_gap_filling.ipynb

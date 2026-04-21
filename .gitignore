@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Jupyter notebooks (use .py via jupytext)
+*.ipynb
+
+# Results — keep JSON and .gitkeep, ignore images
+results/*.png
+!results/*.json
+!results/.gitkeep
+
+# Environment
+.env
+*.egg
+*.whl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# MyST build output
+_build/

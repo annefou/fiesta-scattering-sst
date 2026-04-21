@@ -1,0 +1,22 @@
+name: fiesta-scattering-sst
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - matplotlib
+  - scipy
+  - healpy
+  - xarray
+  - zarr
+  - dask
+  - s3fs
+  - fsspec
+  - netcdf4
+  - jupytext
+  - pip
+  - pip:
+      - foscat
+      - pint-xarray
+      - cf-xarray
+      - cmcrameri
