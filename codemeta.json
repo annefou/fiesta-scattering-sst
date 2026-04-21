@@ -1,6 +1,8 @@
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@id": "https://doi.org/10.5281/zenodo.19686691",
   "@type": "SoftwareSourceCode",
+  "version": "0.1.1",
   "name": "FIESTA Scattering SST",
   "description": "Reproducing the application of Cross Scattering Transform to Copernicus Marine SST cloud gap-filling, originally demonstrated by Jean-Marc Delouis.",
   "license": "https://spdx.org/licenses/MIT",
