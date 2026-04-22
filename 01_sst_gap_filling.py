@@ -56,8 +56,6 @@ import healpy as hp
 import foscat.scat_cov as sc
 import foscat.Synthesis as synthe
 import copernicusmarine
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pathlib import Path
 import json
@@ -346,4 +344,5 @@ ax9.set_xlabel('Iteration'); ax9.set_ylabel('Loss'); ax9.set_title('Convergence'
 fig.suptitle(f'Scattering Transform SST Gap-Filling (nside={NSIDE}, {DATE})', fontsize=14, fontweight='bold')
 fig.tight_layout(rect=[0, 0, 1, 0.96], h_pad=3, w_pad=2)
 fig.savefig(RESULTS / 'sst_gap_filling.png', dpi=150, bbox_inches='tight')
+plt.show()
 print(f"Saved: {RESULTS / 'sst_gap_filling.png'}")
