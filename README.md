@@ -42,7 +42,7 @@ reproduction at [annefou/fiesta-scattering-astro](https://github.com/annefou/fie
 ## FIESTA-OSCARS
 
 This work is part of the **FIESTA** project under the
-[OSCARS](https://oscars-project.eu/) programme, demonstrating cross-domain
+[OSCARS](https://oscars-project.eu/projects/fair-image-analysis-across-sciences) programme, demonstrating cross-domain
 reproducibility of research software methods.
 
 ## Data
