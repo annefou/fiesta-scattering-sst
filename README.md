@@ -81,6 +81,27 @@ npm install mystmd
 npx myst build --html
 ```
 
+## Note on FOSCAT and GPU/CPU support
+
+The [FOSCAT](https://github.com/jmdelouis/FOSCAT) package (as of v2026.2.7 on
+PyPI) has several hardcoded `device='cuda'` defaults, which means it **only
+works on machines with an NVIDIA GPU** out of the box. On CPU-only machines
+(Apple Silicon Macs, CI runners, etc.) it will crash with a CUDA device error.
+
+We have submitted a fix upstream:
+[jmdelouis/FOSCAT#40](https://github.com/jmdelouis/FOSCAT/pull/40)
+([commit](https://github.com/annefou/FOSCAT/commit/04244ed)).
+
+Until the fix is merged and released, you can install FOSCAT from our fork:
+
+```bash
+pip install git+https://github.com/annefou/FOSCAT.git@fix/cpu-device-fallback
+```
+
+The fix is fully backwards compatible: on CUDA machines the behaviour is
+identical to the original. It simply adds auto-detection so that CPU is used as
+a fallback when CUDA is not available.
+
 ## Companion repository
 
 - Astrophysics (CMB): [annefou/fiesta-scattering-astro](https://github.com/annefou/fiesta-scattering-astro)
