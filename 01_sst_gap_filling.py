@@ -316,22 +316,22 @@ def plot_hp(data, mask, title, sub):
     hp.mollview(d, nest=True, min=vmin, max=vmax, cmap='coolwarm',
                 title=title, sub=sub, fig=fig.number)
 
-plot_hp(sst_polyfit, ocean_hp, 'L3S + harmonics fill', (3,3,1))
-plot_hp(omap_np[0], ocean_hp, f'FOSCAT ({NSTEPS} steps)', (3,3,2))
-plot_hp(sst_l4_hp, ocean_hp, 'L4 reference', (3,3,3))
+plot_hp(sst_polyfit, ocean_hp, 'L3S + Sph. Harmonics (naive baseline)', (3,3,1))
+plot_hp(omap_np[0], ocean_hp, f'L3S + FOSCAT scattering ({NSTEPS} steps)', (3,3,2))
+plot_hp(sst_l4_hp, ocean_hp, 'L4 Optimal Interpolation (operational)', (3,3,3))
 
 diff_h = np.abs(sst_l4_hp - sst_polyfit); diff_h[~ocean_hp] = hp.UNSEEN
 diff_f = np.abs(sst_l4_hp - omap_np[0]); diff_f[~ocean_hp] = hp.UNSEEN
 hp.mollview(diff_h, nest=True, min=0, max=5, cmap='hot',
-            title='|Harmonics - L4|', sub=(3,3,4), fig=fig.number)
+            title='|Sph. Harmonics - L4|', sub=(3,3,4), fig=fig.number)
 hp.mollview(diff_f, nest=True, min=0, max=5, cmap='hot',
             title='|FOSCAT - L4|', sub=(3,3,5), fig=fig.number)
 cloud_p = clouds.astype(float); cloud_p[~ocean_hp] = hp.UNSEEN
 hp.mollview(cloud_p, nest=True, cmap='binary', title='Clouds', sub=(3,3,6), fig=fig.number)
 
 ax7 = fig.add_subplot(3,3,7)
-ax7.hist(diff_harm, bins=80, range=[-10,10], alpha=0.7, label=f'Harm RMSE={rmse_harm:.2f}', color='red')
-ax7.hist(diff_foscat, bins=80, range=[-10,10], alpha=0.7, label=f'FOSCAT RMSE={rmse_foscat:.2f}', color='blue')
+ax7.hist(diff_harm, bins=80, range=[-10,10], alpha=0.7, label=f'Sph. Harmonics (RMSE={rmse_harm:.1f} K)', color='red')
+ax7.hist(diff_foscat, bins=80, range=[-10,10], alpha=0.7, label=f'FOSCAT (RMSE={rmse_foscat:.2f} K)', color='blue')
 ax7.set_xlabel('Error (K)'); ax7.legend(fontsize=8); ax7.set_title('Error distribution')
 
 ax8 = fig.add_subplot(3,3,8)

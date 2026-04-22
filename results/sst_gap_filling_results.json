@@ -6,7 +6,7 @@
   "date": "2026-04-01",
   "nside": 32,
   "nsteps": 300,
-  "elapsed_s": 135.0315318107605,
+  "elapsed_s": 138.78500485420227,
   "device": "cpu",
   "harmonics_rmse": 11.463294908583702,
   "foscat_rmse": 0.9891220782656707,
