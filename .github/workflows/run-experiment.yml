@@ -11,21 +11,20 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
+      CI: "true"
       COPERNICUSMARINE_SERVICE_USERNAME: ${{ secrets.COPERNICUSMARINE_SERVICE_USERNAME }}
       COPERNICUSMARINE_SERVICE_PASSWORD: ${{ secrets.COPERNICUSMARINE_SERVICE_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Micromamba
+        uses: mamba-org/setup-micromamba@v3
         with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install "foscat @ git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu" healpy xarray zarr s3fs pint-xarray cf-xarray cmcrameri
-          pip install jupytext matplotlib numpy scipy fsspec netcdf4 nbclient nbconvert ipykernel copernicusmarine
+          environment-file: environment.yml
+          environment-name: fiesta-scattering-sst
+          init-shell: bash
+          cache-environment: true
 
       - name: Setup Copernicus Marine credentials
         run: |
@@ -35,7 +34,7 @@ jobs:
           password=${COPERNICUSMARINE_SERVICE_PASSWORD}" | base64 > ~/.copernicusmarine/.copernicusmarine-credentials
 
       - name: Run notebook
-        env:
-          CI: "true"
+        shell: micromamba-shell {0}
         run: |
-          jupytext --to notebook --execute 01_sst_gap_filling.py
+          jupytext --to notebook 01_sst_gap_filling.py
+          jupyter execute --inplace 01_sst_gap_filling.ipynb
