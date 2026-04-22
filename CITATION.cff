@@ -3,7 +3,8 @@ title: "FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling"
 message: "If you use this software, please cite it using the metadata from this file and the reference below."
 type: software
 doi: "10.5281/zenodo.19686691"
-version: "0.1.1"
+version: "0.3.0"
+date-released: "2026-04-22"
 authors:
   - given-names: Anne
     family-names: Fouilloux
