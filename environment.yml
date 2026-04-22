@@ -3,20 +3,23 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
-  - numpy
-  - matplotlib
-  - scipy
-  - healpy
-  - xarray
-  - zarr
-  - dask
+  - numpy=2.2
+  - matplotlib=3.10
+  - scipy=1.15
+  - healpy=1.19
+  - xarray=2025.4
+  - zarr=3.1
+  - dask=2025.2
   - s3fs
   - fsspec
   - netcdf4
   - jupytext
   - pip
   - pip:
-      - foscat
-      - pint-xarray
-      - cf-xarray
+      # CPU-patched fork of FOSCAT (upstream PR: jmdelouis/FOSCAT#40)
+      # Use 'foscat' from PyPI instead if running on a CUDA GPU machine
+      - foscat @ git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu
+      - pint-xarray==0.4
+      - cf-xarray==0.10.5
       - cmcrameri
+      - copernicusmarine==2.4.0
