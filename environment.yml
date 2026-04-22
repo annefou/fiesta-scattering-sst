@@ -16,7 +16,8 @@ dependencies:
   - jupytext
   - nbclient
   - ipykernel
-  - pytorch-cpu=2.11
+  - pytorch
+  - cpuonly
   - pip
   - pip:
       # CPU-patched fork of FOSCAT (upstream PR: jmdelouis/FOSCAT#40)
