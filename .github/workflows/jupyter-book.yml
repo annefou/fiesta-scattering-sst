@@ -43,6 +43,9 @@ jobs:
       - name: Install MyST
         run: npm install -g mystmd
 
+      - name: Login to Copernicus Marine
+        run: copernicusmarine login --username "$COPERNICUSMARINE_SERVICE_USERNAME" --password "$COPERNICUSMARINE_SERVICE_PASSWORD" --skip-if-user-logged-in
+
       - name: Execute notebook
         run: |
           jupytext --to notebook 01_sst_gap_filling.py
