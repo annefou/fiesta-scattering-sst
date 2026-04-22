@@ -43,8 +43,12 @@ jobs:
       - name: Install MyST
         run: npm install -g mystmd
 
-      - name: Login to Copernicus Marine
-        run: copernicusmarine login --username "$COPERNICUSMARINE_SERVICE_USERNAME" --password "$COPERNICUSMARINE_SERVICE_PASSWORD" --skip-if-user-logged-in
+      - name: Setup Copernicus Marine credentials
+        run: |
+          mkdir -p ~/.copernicusmarine
+          echo "[credentials]
+          username=${COPERNICUSMARINE_SERVICE_USERNAME}
+          password=${COPERNICUSMARINE_SERVICE_PASSWORD}" | base64 > ~/.copernicusmarine/.copernicusmarine-credentials
 
       - name: Execute notebook
         run: |

@@ -24,8 +24,12 @@ jobs:
           pip install "foscat @ git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu" healpy xarray zarr s3fs pint-xarray cf-xarray cmcrameri
           pip install jupytext matplotlib numpy scipy fsspec netcdf4 nbclient ipykernel
 
-      - name: Login to Copernicus Marine
-        run: copernicusmarine login --username "$COPERNICUSMARINE_SERVICE_USERNAME" --password "$COPERNICUSMARINE_SERVICE_PASSWORD" --skip-if-user-logged-in
+      - name: Setup Copernicus Marine credentials
+        run: |
+          mkdir -p ~/.copernicusmarine
+          echo "[credentials]
+          username=${COPERNICUSMARINE_SERVICE_USERNAME}
+          password=${COPERNICUSMARINE_SERVICE_PASSWORD}" | base64 > ~/.copernicusmarine/.copernicusmarine-credentials
 
       - name: Run notebook
         env:
