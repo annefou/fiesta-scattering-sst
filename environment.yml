@@ -1,6 +1,7 @@
 name: fiesta-scattering-sst
 channels:
   - conda-forge
+  - pytorch
 dependencies:
   - python=3.11
   - numpy=2.2
