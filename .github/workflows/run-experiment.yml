@@ -22,7 +22,7 @@ jobs:
           pip install --upgrade pip
           pip install torch --index-url https://download.pytorch.org/whl/cpu
           pip install "foscat @ git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu" healpy xarray zarr s3fs pint-xarray cf-xarray cmcrameri
-          pip install jupytext matplotlib numpy scipy fsspec netcdf4
+          pip install jupytext matplotlib numpy scipy fsspec netcdf4 nbclient ipykernel
 
       - name: Run notebook
         env:
