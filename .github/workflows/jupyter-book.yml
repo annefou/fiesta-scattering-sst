@@ -53,7 +53,7 @@ jobs:
       - name: Execute notebook
         run: |
           jupytext --to notebook 01_sst_gap_filling.py
-          jupyter execute 01_sst_gap_filling.ipynb
+          jupyter execute --inplace 01_sst_gap_filling.ipynb
 
       - name: Build MyST site
         env:
