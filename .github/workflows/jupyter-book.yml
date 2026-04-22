@@ -49,6 +49,8 @@ jobs:
           jupyter execute 01_sst_gap_filling.ipynb
 
       - name: Build MyST site
+        env:
+          BASE_URL: /${{ github.event.repository.name }}
         run: myst build --html
 
       - name: Upload pages artifact
