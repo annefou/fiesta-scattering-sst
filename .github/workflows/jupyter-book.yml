@@ -1,4 +1,4 @@
-name: Jupyter Book
+name: Build and Deploy Jupyter Book
 
 on:
   push:
@@ -11,18 +11,17 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
-env:
-  BASE_URL: /fiesta-scattering-sst/
-
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      CI: "true"
+      COPERNICUSMARINE_SERVICE_USERNAME: ${{ secrets.COPERNICUSMARINE_SERVICE_USERNAME }}
+      COPERNICUSMARINE_SERVICE_PASSWORD: ${{ secrets.COPERNICUSMARINE_SERVICE_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -32,30 +31,39 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
+          node-version: 22.x
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install jupytext
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install "foscat @ git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu" healpy xarray zarr s3fs pint-xarray cf-xarray cmcrameri copernicusmarine
+          pip install jupytext matplotlib numpy scipy fsspec netcdf4
 
       - name: Install MyST
-        run: npm install mystmd
+        run: npm install -g mystmd
 
-      - name: Convert py to ipynb
-        run: jupytext --to notebook 01_sst_gap_filling.py
+      - name: Execute notebook
+        run: |
+          jupytext --to notebook 01_sst_gap_filling.py
+          jupyter execute 01_sst_gap_filling.ipynb
 
-      - name: Build site
-        run: npx myst build --html
+      - name: Build MyST site
+        run: myst build --html
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: _build/html
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
