@@ -1,6 +1,17 @@
 version: 1
 project:
   title: "Scattering Transform: SST Gap-Filling"
+  authors:
+    - name: Anne Fouilloux
+      orcid: 0000-0002-1784-2920
+      affiliations:
+        - LifeWatch ERIC
+  github: https://github.com/annefou/fiesta-scattering-sst
+  license: MIT
   toc:
     - file: index.md
     - file: 01_sst_gap_filling.ipynb
+
+site:
+  title: "Scattering Transform: SST Gap-Filling"
+  base_url: /fiesta-scattering-sst
