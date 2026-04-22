@@ -308,7 +308,7 @@ with open(RESULTS / "sst_gap_filling_results.json", "w") as f:
     json.dump(results, f, indent=2)
 
 # %%
-fig = plt.figure(figsize=(18, 12))
+fig = plt.figure(figsize=(20, 14))
 vmin, vmax = np.percentile(sst_l4_hp[ocean_hp], [2, 98])
 
 def plot_hp(data, mask, title, sub):
@@ -344,6 +344,6 @@ h = sy.get_history(); ax9.semilogy(h[h>0])
 ax9.set_xlabel('Iteration'); ax9.set_ylabel('Loss'); ax9.set_title('Convergence')
 
 fig.suptitle(f'Scattering Transform SST Gap-Filling (nside={NSIDE}, {DATE})', fontsize=14, fontweight='bold')
-fig.tight_layout()
+fig.tight_layout(rect=[0, 0, 1, 0.96], h_pad=3, w_pad=2)
 fig.savefig(RESULTS / 'sst_gap_filling.png', dpi=150, bbox_inches='tight')
 print(f"Saved: {RESULTS / 'sst_gap_filling.png'}")
