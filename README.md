@@ -1,5 +1,9 @@
 # FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling
 
+[![Source DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19686691.svg)](https://doi.org/10.5281/zenodo.19686691)
+[![Docker image DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19708070.svg)](https://doi.org/10.5281/zenodo.19708070)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Reproducing the application of **Cross Scattering Transform** to fill cloud gaps in
 Copernicus Marine Sea Surface Temperature (SST) satellite data.
 
@@ -101,6 +105,53 @@ pip install git+https://github.com/annefou/FOSCAT.git@v0.1.0-cpu
 The fix is fully backwards compatible: on CUDA machines the behaviour is
 identical to the original. It simply adds auto-detection so that CPU is used as
 a fallback when CUDA is not available.
+
+## Container image
+
+A Docker container is built on every release and pushed to GitHub Container
+Registry, and archived to Zenodo for long-term preservation.
+
+```bash
+docker pull ghcr.io/annefou/fiesta-scattering-sst:latest
+docker run --rm -v "$PWD/results:/app/results" \
+    -e COPERNICUSMARINE_SERVICE_USERNAME=... \
+    -e COPERNICUSMARINE_SERVICE_PASSWORD=... \
+    ghcr.io/annefou/fiesta-scattering-sst:latest
+```
+
+Zenodo-archived tarballs of every released image are available via the
+[Docker image concept DOI 10.5281/zenodo.19708070](https://doi.org/10.5281/zenodo.19708070).
+
+## How to cite
+
+If you use this repository, please cite it via its Zenodo DOI together with
+the original method paper (Delouis et al. 2022).
+
+```
+Fouilloux, A. (2026). FIESTA Scattering SST: Copernicus Sea Surface
+Temperature Gap-Filling (v0.3.1). Zenodo.
+https://doi.org/10.5281/zenodo.19686691
+```
+
+BibTeX:
+
+```bibtex
+@software{fouilloux_fiesta_scattering_sst,
+  author    = {Fouilloux, Anne},
+  title     = {FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling},
+  year      = {2026},
+  version   = {0.3.1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19686691},
+  url       = {https://doi.org/10.5281/zenodo.19686691}
+}
+```
+
+The DOI above is the **concept DOI** — it always resolves to the latest
+release. Specific version DOIs are available on the
+[Zenodo record page](https://doi.org/10.5281/zenodo.19686691).
+
+See [`CITATION.cff`](CITATION.cff) for machine-readable citation metadata.
 
 ## Companion repository
 
