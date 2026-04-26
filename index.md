@@ -49,6 +49,37 @@ This work demonstrates a powerful cross-domain transfer:
 The companion astrophysics repository reproduces the original CMB application:
 [annefou/fiesta-scattering-astro](https://github.com/annefou/fiesta-scattering-astro).
 
+## FORRT nanopublication chain
+
+The full provenance of this replication is recorded as a six-step FORRT
+nanopublication chain on the
+[Science Live](https://platform.sciencelive4all.org) platform — paper →
+quote → atomic claim → FORRT claim → study → outcome → CiTO citations
+back to the paper *and* to Jean-Marc Delouis's IGARSS 2024 Pangeo tutorial.
+Each step is independently citable and machine-readable.
+
+> **Headline assertion — machine-readable:**
+> [**This replication `cito:confirms` + `cito:usesMethodIn` Delouis et al. 2022, AND `cito:credits` the IGARSS 2024 Pangeo tutorial**](https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k)
+>
+> Three relationships in one citation nanopublication: we substantiate the
+> paper's generalisation claim across domains (`cito:confirms`); our work
+> uses the FOSCAT scattering method developed in that paper (`cito:usesMethodIn`);
+> and the operational SST workflow we follow is from Jean-Marc Delouis's
+> IGARSS 2024 Pangeo tutorial (`cito:credits`). Discovery tools (Scholia,
+> Wikidata pipelines, SPARQL endpoints) can follow this single citation
+> to find all three relationships.
+
+The five preceding nanopubs build the provenance ladder up to that citation:
+
+| Step | Type | Nanopub URI |
+|---|---|---|
+| 1 | Quote-with-comment (Annotate a paper quotation) | <https://w3id.org/sciencelive/np/RAUqGWdJOve1i0KCOCZhPfXT9qXquiS3qFdLNLgKu-j-I> |
+| 2 | AIDA sentence *(Nanodash namespace)* | <https://w3id.org/np/RAsnOdj5BxkhD_u67TguhaVIz6T1TaIGW5qzM7_QuNrqU> |
+| 3 | FORRT Claim (model performance) | <https://w3id.org/sciencelive/np/RAQPvE7Y4PNeL2oDwFh_uJgJbFHyBmWEvyZfO-RWy1pP8> |
+| 4 | FORRT Reproduction/Replication Study | <https://w3id.org/sciencelive/np/RA45t1bdfz6Jr40G9dDqrWAF4i7-DT3HQNOSheRWjcuho> |
+| 5 | FORRT Replication Outcome (Validated, High) | <https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40> |
+| 6 | **CiTO `confirms` + `usesMethodIn` Delouis 2022 + `credits` IGARSS 2024 tutorial** | **<https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k>** |
+
 ## Data source
 
 SST data is obtained from the

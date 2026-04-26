@@ -49,6 +49,41 @@ This work is part of the **FIESTA** project under the
 [OSCARS](https://oscars-project.eu/projects/fair-image-analysis-across-sciences) programme, demonstrating cross-domain
 reproducibility of research software methods.
 
+## FORRT nanopublication chain
+
+The full provenance of this replication is recorded as a six-step FORRT
+nanopublication chain on the
+[Science Live](https://platform.sciencelive4all.org) platform. Each step is
+independently citable and machine-readable; together they form the FAIR
+provenance receipt for this replication.
+
+> **Headline assertion — machine-readable:**
+> [**This replication `cito:confirms` + `cito:usesMethodIn` Delouis et al. 2022, AND `cito:credits` the IGARSS 2024 Pangeo tutorial**](https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k)
+>
+> The CiTO citation nanopublication encodes three relationships at once:
+> we substantiate the paper's generalisation claim across domains
+> (`cito:confirms` Delouis 2022); our work uses the FOSCAT scattering
+> method developed in that paper (`cito:usesMethodIn` Delouis 2022); and
+> the operational SST workflow we follow is Jean-Marc Delouis's IGARSS
+> 2024 Pangeo tutorial notebook (`cito:credits`). Discovery tools
+> (Scholia, Wikidata pipelines, SPARQL endpoints) can follow this single
+> citation to find all three relationships.
+
+The five preceding nanopubs build the provenance ladder up to that citation:
+
+| Step | Type | Asserts | Nanopub URI |
+|---|---|---|---|
+| 1 | Quote-with-comment (Annotate a paper quotation) | Verbatim quote of Delouis et al. 2022's generalisation claim (Section 6 Conclusion), with personal comment on the cross-domain test | [`RAUqG…`](https://w3id.org/sciencelive/np/RAUqGWdJOve1i0KCOCZhPfXT9qXquiS3qFdLNLgKu-j-I) |
+| 2 | AIDA sentence | Atomic, declarative restatement: scattering transforms can fill cloud gaps in satellite SST observations using a gap-free reference product as a statistical target. *(Published via Nanodash because of a Science Live AIDA-form bug with the datasets + publications fields; URI is on the bare-`np` namespace rather than `sciencelive/np`.)* | [`RAsnO…`](https://w3id.org/np/RAsnOdj5BxkhD_u67TguhaVIz6T1TaIGW5qzM7_QuNrqU) |
+| 3 | FORRT Claim (model performance) | The SST gap-filling claim, typed as a FORRT model-performance claim | [`RAQPv…`](https://w3id.org/sciencelive/np/RAQPvE7Y4PNeL2oDwFh_uJgJbFHyBmWEvyZfO-RWy1pP8) |
+| 4 | FORRT Reproduction/Replication Study | Both reproduction (of Jean-Marc's IGARSS 2024 SST notebook) AND replication (of Delouis 2022's generalisation claim across domains) — same FOSCAT software, Earth observation data instead of astrophysics | [`RA45t…`](https://w3id.org/sciencelive/np/RA45t1bdfz6Jr40G9dDqrWAF4i7-DT3HQNOSheRWjcuho) |
+| 5 | FORRT Replication Outcome (Validated, High) | FOSCAT RMSE 0.989 K vs L4 reference; harmonic baseline RMSE 11.46 K; 91% improvement | [`RAK2y…`](https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40) |
+| 6 | **CiTO citation — `cito:confirms` + `cito:usesMethodIn` Delouis 2022 + `cito:credits` IGARSS 2024 tutorial** | The headline triple assertion above | [**`RAA6_…`**](https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k) |
+
+The chain runs: paper → quote → atomic claim → FORRT claim → study (this
+repo) → outcome (the metrics in the validation table) → CiTO citations
+back to the paper *and* to Jean-Marc's IGARSS 2024 tutorial.
+
 ## Data
 
 SST data is downloaded automatically from the
