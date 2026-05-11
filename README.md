@@ -1,8 +1,14 @@
 # FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling
 
+[![CI](https://github.com/annefou/fiesta-scattering-sst/actions/workflows/ci.yml/badge.svg)](https://github.com/annefou/fiesta-scattering-sst/actions/workflows/ci.yml)
+[![Jupyter Book](https://github.com/annefou/fiesta-scattering-sst/actions/workflows/jupyter-book.yml/badge.svg)](https://annefou.github.io/fiesta-scattering-sst/)
+[![Docker](https://github.com/annefou/fiesta-scattering-sst/actions/workflows/docker.yml/badge.svg)](https://github.com/annefou/fiesta-scattering-sst/pkgs/container/fiesta-scattering-sst)
 [![Source DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19686691.svg)](https://doi.org/10.5281/zenodo.19686691)
 [![Docker image DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19708070.svg)](https://doi.org/10.5281/zenodo.19708070)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![FAIR4RS](https://img.shields.io/badge/FAIR4RS-conformant-brightgreen)](https://doi.org/10.15497/RDA00068)
+[![FORRT](https://img.shields.io/badge/FORRT-replication-blue)](https://forrt.org/)
+[![Science Live](https://img.shields.io/badge/Science%20Live-nanopub%20chain-purple)](https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40)
 
 Reproducing the application of **Cross Scattering Transform** to fill cloud gaps in
 Copernicus Marine Sea Surface Temperature (SST) satellite data.
