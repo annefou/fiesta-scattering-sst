@@ -12,8 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: "true"
-      COPERNICUSMARINE_SERVICE_USERNAME: ${{ secrets.COPERNICUSMARINE_SERVICE_USERNAME }}
-      COPERNICUSMARINE_SERVICE_PASSWORD: ${{ secrets.COPERNICUSMARINE_SERVICE_PASSWORD }}
+      # Hermetic smoke test: a synthetic SST field instead of the Copernicus
+      # downloads, so PR checks need no credentials and do not depend on
+      # Copernicus Marine authentication. The Jupyter Book runs the real data.
+      SYNTHETIC_SST: "1"
 
     steps:
       - uses: actions/checkout@v4
@@ -25,13 +27,6 @@ jobs:
           environment-name: fiesta-scattering-sst
           init-shell: bash
           cache-environment: true
-
-      - name: Setup Copernicus Marine credentials
-        run: |
-          mkdir -p ~/.copernicusmarine
-          echo "[credentials]
-          username=${COPERNICUSMARINE_SERVICE_USERNAME}
-          password=${COPERNICUSMARINE_SERVICE_PASSWORD}" | base64 > ~/.copernicusmarine/.copernicusmarine-credentials
 
       - name: Run notebook
         shell: micromamba-shell {0}
