@@ -337,6 +337,38 @@ with open(RESULTS / "sst_gap_filling_results.json", "w") as f:
     json.dump(results, f, indent=2)
 
 # %%
+# The gap-filled field itself, so it can be archived with a DOI and reused: one value per
+# HEALPix cell (NESTED ordering), CF-style NetCDF.
+def as_field(values, mask=None):
+    out = np.asarray(values, dtype=np.float32).copy()
+    if mask is not None:
+        out[~mask] = np.nan
+    return ("cell", out, {"units": "K", "standard_name": "sea_surface_temperature"})
+
+filled = xr.Dataset(
+    {
+        "sst_l3s_observed": as_field(sst_l3s_hp, observed),
+        "sst_l4_reference": as_field(sst_l4_hp, ocean_hp),
+        "sst_filled_harmonic": as_field(sst_polyfit, ocean_hp),
+        "sst_filled_foscat": as_field(omap_np[0], ocean_hp),
+        "cloud_mask": ("cell", clouds.astype(np.int8), {"long_name": "1 = cloud gap filled by the methods"}),
+        "ocean_mask": ("cell", ocean_hp.astype(np.int8), {"long_name": "1 = ocean cell"}),
+    },
+    coords={"cell": ("cell", np.arange(npix), {"long_name": "HEALPix cell index (NESTED)"})},
+    attrs={
+        "title": "Copernicus Marine SST cloud gaps filled with the cross scattering transform (FOSCAT)",
+        "Conventions": "CF-1.11",
+        "grid_mapping_name": "healpix", "healpix_nside": NSIDE, "healpix_order": "nested",
+        "date": DATE, "source_l3s": results["l3s_dataset"], "source_l4": results["l4_dataset"],
+        "synthetic_input": int(SYNTHETIC_SST),
+        "method_reference": "https://doi.org/10.1051/0004-6361/202244566",
+        "foscat_rmse_K": float(rmse_foscat), "harmonic_rmse_K": float(rmse_harm),
+    },
+)
+filled.to_netcdf(RESULTS / "sst_gap_filled_healpix.nc")
+print(f"Saved: {RESULTS / 'sst_gap_filled_healpix.nc'}")
+
+# %%
 fig = plt.figure(figsize=(20, 14))
 vmin, vmax = np.percentile(sst_l4_hp[ocean_hp], [2, 98])
 
