@@ -6,9 +6,9 @@
   "date": "2026-04-01",
   "nside": 32,
   "nsteps": 300,
-  "elapsed_s": 138.78500485420227,
+  "elapsed_s": 105.2156150341034,
   "device": "cpu",
   "harmonics_rmse": 11.463294908583702,
-  "foscat_rmse": 0.9891220782656707,
-  "improvement_pct": 91.37139813505961
+  "foscat_rmse": 0.9854995431188764,
+  "improvement_pct": 91.40299930362137
 }
