@@ -86,25 +86,56 @@ LMAX = 15 if CI_MODE else 30
 # - **L4**: gap-free analysis (ground truth for validation)
 
 # %%
-print(f"Loading Copernicus Marine SST for {DATE}...")
+# SYNTHETIC_SST=1 (set only by the CI smoke test) replaces the two Copernicus
+# downloads by a deterministic synthetic field with the same variables and
+# grid layout, so pull-request checks need no Copernicus credentials. Every
+# real run (local, Jupyter Book, Docker) downloads the genuine products.
+SYNTHETIC_SST = os.environ.get("SYNTHETIC_SST", "0") == "1"
 
-# L3S PMW: 0.25° resolution — matches L4
-print("  L3S PMW (0.25°, with cloud gaps)...")
-L3S = copernicusmarine.open_dataset(
-    dataset_id="cmems_obs-sst_glo_phy_l3s_pmw_P1D-m",
-    variables=["sea_surface_temperature", "quality_level"],
-    start_datetime=DATE, end_datetime=DATE,
-).isel(time=0)
-print(f"    Shape: {L3S['sea_surface_temperature'].shape}")
 
-# L4: 0.25° resolution — gap-free reference
-print("  L4 (0.25°, gap-free)...")
-L4 = copernicusmarine.open_dataset(
-    dataset_id="cmems_obs-sst_glo_phy-temp_nrt_P1D-m",
-    variables=["analysed_sst"],
-    start_datetime=DATE, end_datetime=DATE,
-).isel(time=0)
-print(f"    Shape: {L4['analysed_sst'].shape}")
+def synthetic_sst(step=1.0):
+    """L3S-like and L4-like datasets: smooth SST, one landmass, contiguous gaps."""
+    lat = np.arange(-89.5, 90.0, step)
+    lon = np.arange(-179.5, 180.0, step)
+    lat_g, lon_g = np.meshgrid(lat, lon, indexing="ij")
+    sst = (273.15 + 27.0 * np.cos(np.deg2rad(lat_g))
+           + 2.5 * np.sin(np.deg2rad(3.0 * lon_g)) * np.cos(np.deg2rad(lat_g))
+           + 1.5 * np.cos(np.deg2rad(2.0 * lat_g)))
+    land = (lon_g > -100.0) & (lon_g < -30.0) & (lat_g > -10.0) & (lat_g < 55.0)
+    gaps = np.sin(np.deg2rad(2.5 * lat_g + 40.0)) * np.cos(np.deg2rad(1.5 * lon_g)) > 0.35
+    coords = {"latitude": lat, "longitude": lon}
+    l4 = xr.Dataset({"analysed_sst": (("latitude", "longitude"), np.where(land, np.nan, sst))},
+                    coords=coords)
+    l3s = xr.Dataset({"sea_surface_temperature": (("latitude", "longitude"),
+                                                  np.where(land | gaps, np.nan, sst)),
+                      "quality_level": (("latitude", "longitude"),
+                                        np.where(land | gaps, 0, 5))}, coords=coords)
+    return l3s, l4
+
+
+if SYNTHETIC_SST:
+    print("SYNTHETIC_SST=1: using a synthetic SST field, not Copernicus Marine (CI smoke test)")
+    L3S, L4 = synthetic_sst()
+else:
+    print(f"Loading Copernicus Marine SST for {DATE}...")
+
+    # L3S PMW: 0.25° resolution — matches L4
+    print("  L3S PMW (0.25°, with cloud gaps)...")
+    L3S = copernicusmarine.open_dataset(
+        dataset_id="cmems_obs-sst_glo_phy_l3s_pmw_P1D-m",
+        variables=["sea_surface_temperature", "quality_level"],
+        start_datetime=DATE, end_datetime=DATE,
+    ).isel(time=0)
+
+    # L4: 0.25° resolution — gap-free reference
+    print("  L4 (0.25°, gap-free)...")
+    L4 = copernicusmarine.open_dataset(
+        dataset_id="cmems_obs-sst_glo_phy-temp_nrt_P1D-m",
+        variables=["analysed_sst"],
+        start_datetime=DATE, end_datetime=DATE,
+    ).isel(time=0)
+print(f"    L3S shape: {L3S['sea_surface_temperature'].shape}")
+print(f"    L4 shape:  {L4['analysed_sst'].shape}")
 
 # %% [markdown]
 # ## 2. Preprocess on the same lat-lon grid
