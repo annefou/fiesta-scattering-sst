@@ -1,104 +1,292 @@
 {
-  "@context": "https://w3id.org/ro/crate/1.2/context",
-  "@graph": [
-    {
-      "@type": "CreativeWork",
-      "@id": "ro-crate-metadata.json",
-      "conformsTo": [
-        { "@id": "https://w3id.org/ro/crate/1.2" },
-        { "@id": "https://w3id.org/ro/wfrun/process/0.5" },
-        { "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0" }
-      ],
-      "about": { "@id": "./" }
-    },
-    {
-      "@id": "./",
-      "@type": ["Dataset", "ResearchObject"],
-      "name": "FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling",
-      "description": "Cross-domain application of the FOSCAT scattering-transform method (Delouis et al. 2022, originally for astrophysics) to fill cloud gaps in Copernicus Marine L3S SST satellite data on a HEALPix sphere. Headline result: RMSE 0.989 K vs the L4 operational product — a 91.4 % improvement over the spherical-harmonic baseline.",
-      "license": { "@id": "https://spdx.org/licenses/MIT" },
-      "publisher": { "@id": "https://orcid.org/0000-0002-1784-2920" },
-      "author": [{ "@id": "https://orcid.org/0000-0002-1784-2920" }],
-      "mainEntity": { "@id": "Snakefile" },
-      "identifier": "https://doi.org/10.5281/zenodo.19686691",
-      "citation": [
-        { "@id": "https://doi.org/10.1051/0004-6361/202244566" },
-        { "@id": "https://doi.org/10.5281/zenodo.19793350" },
-        { "@id": "https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40" }
-      ],
-      "hasPart": [
-        { "@id": "Snakefile" },
-        { "@id": "environment.yml" },
-        { "@id": "Dockerfile" },
-        { "@id": "01_sst_gap_filling.py" },
-        { "@id": "CITATION.cff" },
-        { "@id": "codemeta.json" }
-      ]
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-1784-2920",
-      "@type": "Person",
-      "name": "Anne Fouilloux",
-      "affiliation": "LifeWatch ERIC"
-    },
-    {
-      "@id": "Snakefile",
-      "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
-      "name": "Replication pipeline",
-      "description": "Snakemake workflow orchestrating Copernicus L3S/L4 retrieval and FOSCAT scattering gap-filling on HEALPix.",
-      "programmingLanguage": { "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake" }
-    },
-    {
-      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake",
-      "@type": "ComputerLanguage",
-      "name": "Snakemake",
-      "url": "https://snakemake.readthedocs.io/"
-    },
-    {
-      "@id": "01_sst_gap_filling.py",
-      "@type": ["File", "SoftwareSourceCode", "Notebook"],
-      "name": "Step 01 — FOSCAT SST gap-filling",
-      "programmingLanguage": "Python"
-    },
-    {
-      "@id": "environment.yml",
-      "@type": ["File", "ConfigurationFile"],
-      "name": "Conda environment specification",
-      "encodingFormat": "application/yaml"
-    },
-    {
-      "@id": "Dockerfile",
-      "@type": ["File", "ConfigurationFile"],
-      "name": "Container build specification",
-      "encodingFormat": "text/x-dockerfile"
-    },
-    {
-      "@id": "CITATION.cff",
-      "@type": ["File"],
-      "name": "Citation File Format metadata",
-      "encodingFormat": "application/yaml"
-    },
-    {
-      "@id": "codemeta.json",
-      "@type": ["File"],
-      "name": "CodeMeta-2.0 software metadata",
-      "encodingFormat": "application/ld+json"
-    },
-    {
-      "@id": "https://doi.org/10.1051/0004-6361/202244566",
-      "@type": "ScholarlyArticle",
-      "name": "Non-parametric component separation with scattering transforms (Delouis et al. 2022)",
-      "datePublished": "2022"
-    },
-    {
-      "@id": "https://doi.org/10.5281/zenodo.19793350",
-      "@type": "CreativeWork",
-      "name": "IGARSS 2024 Pangeo tutorial — direct source for the cross-domain SST notebook"
-    },
-    {
-      "@id": "https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40",
-      "@type": "CreativeWork",
-      "name": "FORRT Replication Outcome — Validated, High confidence"
-    }
-  ]
+    "@context": "https://w3id.org/ro/crate/1.2/context",
+    "@graph": [
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "author": {
+                "@id": "https://orcid.org/0000-0002-1784-2920"
+            },
+            "citation": [
+                {
+                    "@id": "https://doi.org/10.1051/0004-6361/202244566"
+                },
+                {
+                    "@id": "https://github.com/jmdelouis/FOSCAT"
+                }
+            ],
+            "codeRepository": "https://github.com/annefou/fiesta-scattering-sst",
+            "conformsTo": [
+                {
+                    "@id": "https://w3id.org/np/RAQXwdUrfZ40k2MdeDv9fokzyh35UKuN3w17G2yO4Wm8A"
+                }
+            ],
+            "datePublished": "2026-04-22",
+            "description": "Reproducing the application of Cross Scattering Transform to Copernicus Marine SST cloud gap-filling, originally demonstrated by Jean-Marc Delouis.",
+            "funder": {
+                "@id": "https://ror.org/00k4n6c32"
+            },
+            "funding": {
+                "@id": "https://cordis.europa.eu/project/id/101129751"
+            },
+            "hasPart": [
+                {
+                    "@id": "Snakefile"
+                },
+                {
+                    "@id": "01_sst_gap_filling.py"
+                },
+                {
+                    "@id": "environment.yml"
+                },
+                {
+                    "@id": "Dockerfile"
+                },
+                {
+                    "@id": "results/sst_gap_filling_results.json"
+                },
+                {
+                    "@id": "https://data.marine.copernicus.eu/products"
+                },
+                {
+                    "@id": "https://doi.org/10.5281/zenodo.19686691"
+                }
+            ],
+            "identifier": {
+                "@id": "#version-doi"
+            },
+            "keywords": [],
+            "license": {
+                "@id": "https://spdx.org/licenses/MIT"
+            },
+            "mainEntity": {
+                "@id": "Snakefile"
+            },
+            "name": "FIESTA Scattering SST: Copernicus Sea Surface Temperature Gap-Filling",
+            "publisher": {
+                "@id": "https://ror.org/02a8eka68"
+            },
+            "sameAs": {
+                "@id": "https://doi.org/10.5281/zenodo.19686691"
+            },
+            "subjectOf": [
+                {
+                    "@id": "https://w3id.org/sciencelive/np/RAUqGWdJOve1i0KCOCZhPfXT9qXquiS3qFdLNLgKu-j-I"
+                },
+                {
+                    "@id": "https://w3id.org/np/RAsnOdj5BxkhD_u67TguhaVIz6T1TaIGW5qzM7_QuNrqU"
+                },
+                {
+                    "@id": "https://w3id.org/sciencelive/np/RAQPvE7Y4PNeL2oDwFh_uJgJbFHyBmWEvyZfO-RWy1pP8"
+                },
+                {
+                    "@id": "https://w3id.org/sciencelive/np/RA45t1bdfz6Jr40G9dDqrWAF4i7-DT3HQNOSheRWjcuho"
+                },
+                {
+                    "@id": "https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40"
+                },
+                {
+                    "@id": "https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k"
+                }
+            ],
+            "version": "0.3.1"
+        },
+        {
+            "@id": "ro-crate-metadata.json",
+            "@type": "CreativeWork",
+            "about": {
+                "@id": "./"
+            },
+            "conformsTo": {
+                "@id": "https://w3id.org/ro/crate/1.2"
+            }
+        },
+        {
+            "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake",
+            "@type": "ComputerLanguage",
+            "name": "Snakemake",
+            "url": {
+                "@id": "https://snakemake.readthedocs.io/"
+            },
+            "version": "not pinned"
+        },
+        {
+            "@id": "Snakefile",
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
+            "contentSize": "219",
+            "description": "Replication pipeline (Snakemake): download, clean, analyse, figures.",
+            "encodingFormat": "text/x-snakemake",
+            "name": "Snakefile",
+            "programmingLanguage": {
+                "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake"
+            }
+        },
+        {
+            "@id": "01_sst_gap_filling.py",
+            "@type": "File",
+            "contentSize": "13677",
+            "description": "Script 01_sst_gap_filling",
+            "encodingFormat": "text/x-python",
+            "name": "01_sst_gap_filling.py"
+        },
+        {
+            "@id": "environment.yml",
+            "@type": "File",
+            "contentSize": "634",
+            "description": "Conda environment",
+            "encodingFormat": "text/plain",
+            "name": "environment.yml"
+        },
+        {
+            "@id": "Dockerfile",
+            "@type": "File",
+            "contentSize": "751",
+            "description": "Container build specification",
+            "encodingFormat": "text/plain",
+            "name": "Dockerfile"
+        },
+        {
+            "@id": "results/sst_gap_filling_results.json",
+            "@type": "File",
+            "contentSize": "447",
+            "description": "Result sst_gap_filling_results",
+            "encodingFormat": "application/json",
+            "name": "results/sst_gap_filling_results.json"
+        },
+        {
+            "@id": "https://data.marine.copernicus.eu/products",
+            "@type": "File",
+            "description": "Copernicus Marine SST: L3S (cmems_obs-sst_glo_phy_l3s_pmw_P1D-m) and L4 reference (cmems_obs-sst_glo_phy-temp_nrt_P1D-m)",
+            "encodingFormat": "text/html",
+            "name": "Copernicus Marine SST: L3S (cmems_obs-sst_glo_phy_l3s_pmw_P1D-m) and L4 reference (cmems_obs-sst_glo_phy-temp_nrt_P1D-m)",
+            "sdDatePublished": "2026-10-24"
+        },
+        {
+            "@id": "https://ror.org/02a8eka68",
+            "@type": "Organization",
+            "name": "LifeWatch ERIC",
+            "url": "https://www.lifewatch.eu/"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-1784-2920",
+            "@type": "Person",
+            "affiliation": {
+                "@id": "https://ror.org/02a8eka68"
+            },
+            "name": "Anne Fouilloux"
+        },
+        {
+            "@id": "https://ror.org/00k4n6c32",
+            "@type": "Organization",
+            "name": "European Commission",
+            "url": "https://commission.europa.eu/"
+        },
+        {
+            "@id": "https://cordis.europa.eu/project/id/101129751",
+            "@type": "Grant",
+            "funder": {
+                "@id": "https://ror.org/00k4n6c32"
+            },
+            "identifier": "101129751",
+            "name": "OSCARS: Open Science Clusters' Action for Research and Society"
+        },
+        {
+            "@id": "https://spdx.org/licenses/MIT",
+            "@type": "CreativeWork",
+            "description": "MIT licence for the code.",
+            "name": "MIT License"
+        },
+        {
+            "@id": "https://w3id.org/np/RAQXwdUrfZ40k2MdeDv9fokzyh35UKuN3w17G2yO4Wm8A",
+            "@type": [
+                "CreativeWork",
+                "Profile"
+            ],
+            "description": "The FAIR Enabling Resources the Earth-observation community of OSCARS-FIESTA agreed to use.",
+            "name": "FAIR Implementation Profile: Earth Observation (OSCARS-FIESTA), v1.0.2"
+        },
+        {
+            "@id": "#version-doi",
+            "@type": "PropertyValue",
+            "name": "Version DOI",
+            "propertyID": "https://registry.identifiers.org/registry/doi",
+            "url": "https://doi.org/10.5281/zenodo.19686691",
+            "value": "10.5281/zenodo.19686691"
+        },
+        {
+            "@id": "https://doi.org/10.5281/zenodo.19686691",
+            "@type": "CreativeWork",
+            "description": "Archived release: full source tree, results and figures.",
+            "license": {
+                "@id": "https://spdx.org/licenses/MIT"
+            },
+            "name": "Release v0.3.1 (Zenodo version DOI)"
+        },
+        {
+            "@id": "https://w3id.org/sciencelive/np/RAUqGWdJOve1i0KCOCZhPfXT9qXquiS3qFdLNLgKu-j-I",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "Quote-with-comment (FORRT chain step 01)"
+        },
+        {
+            "@id": "https://w3id.org/np/RAsnOdj5BxkhD_u67TguhaVIz6T1TaIGW5qzM7_QuNrqU",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "AIDA sentence (FORRT chain step 02)"
+        },
+        {
+            "@id": "https://w3id.org/sciencelive/np/RAQPvE7Y4PNeL2oDwFh_uJgJbFHyBmWEvyZfO-RWy1pP8",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "FORRT Claim (FORRT chain step 03)"
+        },
+        {
+            "@id": "https://w3id.org/sciencelive/np/RA45t1bdfz6Jr40G9dDqrWAF4i7-DT3HQNOSheRWjcuho",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "FORRT Reproduction/Replication Study (FORRT chain step 04)"
+        },
+        {
+            "@id": "https://w3id.org/sciencelive/np/RAK2ynlqgA3L_YVbEo-cVoXZ7T63q4eCFZqf9CPWWNc40",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "FORRT Replication Outcome (FORRT chain step 05)"
+        },
+        {
+            "@id": "https://w3id.org/sciencelive/np/RAA6_hyyQvv4h0l4bFNt-9tEn2KRRIL4mVE0pRzt4W31k",
+            "@type": "CreativeWork",
+            "additionalType": "Nanopublication",
+            "encodingFormat": "application/trig",
+            "name": "CiTO citation — `cito:confirms` + `cito:usesMethodIn` Delouis 2022 + `cito:credits` IGARSS 2024 tutorial (FORRT chain step 06)"
+        },
+        {
+            "@id": "https://doi.org/10.1051/0004-6361/202244566",
+            "@type": "ScholarlyArticle",
+            "name": "Delouis et al. 2022, scattering transforms (A&A)"
+        },
+        {
+            "@id": "https://github.com/jmdelouis/FOSCAT",
+            "@type": "CreativeWork",
+            "name": "FOSCAT (Jean-Marc Delouis)"
+        },
+        {
+            "@id": "https://w3id.org/ro/crate/1.2",
+            "@type": "CreativeWork",
+            "name": "https://w3id.org/ro/crate/1.2"
+        },
+        {
+            "@id": "https://snakemake.readthedocs.io/",
+            "@type": "CreativeWork",
+            "name": "Snakemake documentation"
+        }
+    ]
 }
